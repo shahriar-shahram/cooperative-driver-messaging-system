@@ -34,7 +34,7 @@ Traditional systems:
 ## Concept: Intent Sharing in Driving
 
 <p align="center">
-  <img src="assets/diagrams/dms_lane_change.png" width="600">
+  <img src="assets/diagrams/lane_change.png" width="600">
 </p>
 
 A host vehicle (HV):
@@ -52,7 +52,7 @@ The target vehicle:
 ## Target Vehicle Identification
 
 <p align="center">
-  <img src="assets/diagrams/dms_target_selection.png" width="600">
+  <img src="assets/diagrams/v_2_v.jpg" width="600">
 </p>
 
 Key idea:
@@ -88,7 +88,7 @@ The system consists of:
 ## Simulation Environment
 
 <p align="center">
-  <img src="assets/diagrams/dms_simulation.png" width="600">
+  <img src="assets/diagrams/carla_sumo.jpg" width="600">
 </p>
 
 - Evaluated using **SUMO + CARLA**
