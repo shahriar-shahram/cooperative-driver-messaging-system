@@ -12,138 +12,116 @@ Unlike traditional systems that rely only on sensors, DMS allows vehicles to:
 - Share **driver intent (e.g., lane change)**
 - Improve **situational awareness**
 - Reduce ambiguity in driving decisions
+- Enable **cooperative driving behavior**
 
 ---
 
 ## Motivation
 
-Most driving conflicts arise from **lack of communication between drivers**.
+Many driving conflicts arise due to **lack of explicit communication between drivers**.
 
-According to traffic safety studies:
-- A large portion of accidents are caused by **driver decision errors**
-- Vehicles today cannot directly communicate **intent**
+Traditional systems:
+- Infer intent from motion (often too late)
+- Cannot communicate planned maneuvers
+- Lead to uncertainty and delayed reactions
 
-👉 DMS bridges this gap by enabling:
+👉 DMS addresses this by enabling:
 
-> **explicit, real-time communication between vehicles**
+> **Direct, real-time communication of driver intent between vehicles**
 
 ---
 
-## Concept
+## Concept: Intent Sharing in Driving
 
 <p align="center">
   <img src="assets/diagrams/dms_lane_change.png" width="600">
 </p>
 
 A host vehicle (HV):
-- Detects its own intent (e.g., lane change)
+- Detects its driving intent (e.g., lane change)
 - Identifies a relevant **target vehicle (TV)**
 - Sends a **Driver Intent Message (DIM)**
 
 The target vehicle:
 - Receives the message
 - Gains early awareness of the maneuver
-- Can react safely and smoothly
+- Responds safely and smoothly
+
+---
+
+## Target Vehicle Identification
+
+<p align="center">
+  <img src="assets/diagrams/dms_target_selection.png" width="600">
+</p>
+
+Key idea:
+- Identify the **most relevant vehicle** affected by the maneuver
+
+The system uses:
+- Relative position
+- Lane difference (lateral distance)
+- Path history information
+
+✔ Works in both straight and curved road scenarios  
 
 ---
 
 ## System Architecture
 
-<p align="center">
-  <img src="assets/diagrams/dms_architecture.png" width="600">
-</p>
-
 The system consists of:
 
 - **Local Object Map**
   - Built using V2X + onboard sensing  
+
 - **Application Detection**
   - Detects driving scenarios (e.g., lane change)  
+
 - **Target Vehicle Selection**
-  - Identifies the most relevant vehicle  
+  - Identifies the vehicle most affected  
+
 - **V2X Communication**
-  - Transmits intent messages (DIMs)  
+  - Transmits Driver Intent Messages (DIMs)  
 
 ---
 
-## Key Innovation
+## Simulation Environment
 
-### 🔹 Intent-Aware Communication
+<p align="center">
+  <img src="assets/diagrams/dms_simulation.png" width="600">
+</p>
 
-Instead of broadcasting raw data:
-- Vehicles send **meaningful, scenario-specific messages**
-- Communication becomes **context-aware**
-
----
-
-### 🔹 Target Vehicle Identification
-
-- Uses **relative position + path history**
-- Identifies the vehicle most impacted by the maneuver
-
-From the paper:
-- Path-history-based reasoning improves accuracy in curved roads :contentReference[oaicite:3]{index=3}  
+- Evaluated using **SUMO + CARLA**
+- Multi-vehicle traffic scenarios
+- Realistic urban environments
+- Enables validation of cooperative behavior under traffic interactions
 
 ---
 
-### 🔹 Cooperative Situational Awareness
+## Key Insights
 
-DMS extends awareness beyond:
-- sensor range
-- line-of-sight limitations
-
-Vehicles gain:
-- earlier reaction time
-- improved safety margins
-
----
-
-## Example: Lane Change Assistance
-
-- HV intends to change lane  
-- System detects scenario  
-- Closest vehicle in adjacent lane is identified  
-- HV sends intent message  
-
-👉 Result:
-- Reduced uncertainty  
-- Increased time and space headway  
-- Safer maneuver execution  
+- Communication of **intent** is more valuable than raw sensor data  
+- Early awareness improves **safety and comfort**  
+- V2X enables **cooperative decision-making**  
+- Reduces uncertainty in multi-vehicle interactions  
+- Improves lane-change safety and traffic flow  
 
 ---
 
 ## Applications
 
 - Lane change assistance  
-- Intersection negotiation  
-- Tailgating warning  
-- Cooperative driving in dense traffic  
-
----
-
-## Key Insights
-
-- Communication of **intent** is more valuable than raw data  
-- V2X enables **cooperative decision-making**  
-- Early awareness improves safety and comfort  
-- System works in both **straight and curved road scenarios** :contentReference[oaicite:4]{index=4}  
-
----
-
-## Tech Stack
-
-- V2X Communication (DSRC / C-V2X)
-- Sensor fusion (radar, CAN bus)
-- Embedded vehicle systems
-- Algorithmic target selection
+- Intersection coordination  
+- Tailgating mitigation  
+- Cooperative autonomous driving  
 
 ---
 
 ## Publications & Intellectual Property
 
 - *Enabling a Cooperative Driver Messenger System for Lane Change Assistance* — IEEE ITSC 2022  
-- US Patent Application: *Systems and Methods for a Point-to-Point Driver Messenger for Advanced Cooperative Situational Awareness* :contentReference[oaicite:5]{index=5}  
-- US Patent: *Systems and Methods for Use in Allocating Parking Spaces* :contentReference[oaicite:6]{index=6}  
+- US Patent Application: *Point-to-Point Driver Messenger for Cooperative Situational Awareness*  
+- Related work in cooperative vehicle systems  
 
 ---
 
@@ -157,5 +135,5 @@ University of Central Florida
 
 ## Notes
 
-This repository presents a **high-level system view** of the Driver Messaging concept.  
+This repository presents a **high-level system overview** of the Driver Messaging concept.  
 Implementation details are abstracted to respect intellectual property considerations.
